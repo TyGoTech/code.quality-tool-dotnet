@@ -9,6 +9,7 @@ public static class CommandInvoker
         return new()
         {
             new InitCommand(),
+            new FetchCommand(),
         };
     }
 }

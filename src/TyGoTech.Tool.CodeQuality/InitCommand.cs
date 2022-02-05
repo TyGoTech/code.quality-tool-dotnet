@@ -15,19 +15,14 @@ public class InitCommand : CommandExt
             new[] { "--force", "-f" },
             "Overwrites the current settings file if one exists."),
         new Option<DirectoryInfo>(
-            new[] { "--repo-root-folder", "-r" },
-            () => new DirectoryInfo(CodeQualitySettings.Default.RepoRootFolder),
-            "The repository root folder.")
-            .LegalFileNamesOnly(),
-        new Option<DirectoryInfo>(
             new[] { "--source-folder", "-s" },
             () => new DirectoryInfo(CodeQualitySettings.Default.SourceFolder),
-            "The source folder.")
+            "The relative path to the source folder.")
             .LegalFileNamesOnly(),
         new Option<DirectoryInfo>(
             new[] { "--test-folder", "-t" },
             () => new DirectoryInfo(CodeQualitySettings.Default.TestFolder),
-            "The test folder.")
+            "The relative path to the test folder.")
             .LegalFileNamesOnly(),
     };
 
@@ -36,30 +31,35 @@ public class InitCommand : CommandExt
             CommandName,
             CommandDescription,
             CommandOptions,
-            CommandHandler.Create<bool, DirectoryInfo, DirectoryInfo, DirectoryInfo>(Execute))
+            CommandHandler.Create<bool, DirectoryInfo, DirectoryInfo>(Execute))
     {
     }
 
     public static int Execute(
         bool force,
-        DirectoryInfo repoRootFolder,
         DirectoryInfo sourceFolder,
         DirectoryInfo testFolder)
     {
-        if (!repoRootFolder.Exists)
-        {
-            Console.WriteLine($"The repo root folder {repoRootFolder} does not exist.");
-            return 1;
-        }
-
+        var repoFolder = new DirectoryInfo("./");
         var settings = new CodeQualitySettings
         {
-            RepoRootFolder = repoRootFolder.ToString(),
             SourceFolder = sourceFolder.ToString(),
             TestFolder = testFolder.ToString(),
         };
 
-        var rc = Path.Combine(repoRootFolder.FullName, Constants.SettingsFileName);
+        if (Path.IsPathRooted(settings.SourceFolder) || Path.IsPathFullyQualified(settings.SourceFolder))
+        {
+            Console.WriteLine($"The source folder '{settings.SourceFolder}' path must be relative.");
+            return 1;
+        }
+
+        if (Path.IsPathRooted(settings.TestFolder) || Path.IsPathFullyQualified(settings.TestFolder))
+        {
+            Console.WriteLine($"The test folder '{settings.TestFolder}' path must be relative.");
+            return 1;
+        }
+
+        var rc = Path.Combine(repoFolder.FullName, Constants.SettingsFileName);
         if (force)
         {
             File.Delete(rc);
@@ -67,7 +67,7 @@ public class InitCommand : CommandExt
 
         if (File.Exists(rc))
         {
-            Console.WriteLine($"The settings file {rc} already exists (use the '--force' Luke).");
+            Console.WriteLine($"The settings file {rc} already exists (use the --force Luke).");
             return 1;
         }
 

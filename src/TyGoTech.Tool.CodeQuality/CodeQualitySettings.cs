@@ -4,8 +4,6 @@ public class CodeQualitySettings
 {
     public static readonly CodeQualitySettings Default = new();
 
-    public string RepoRootFolder { get; init; } = "./";
-
     public string SourceFolder { get; init; } = "src/";
 
     public string TestFolder { get; init; } = "src/test/";
