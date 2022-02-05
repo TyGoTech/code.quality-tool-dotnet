@@ -354,3 +354,5 @@ MigrationBackup/
 .bin/
 .obj/
 __mismatch__/
+.test/*
+!.test/.hack

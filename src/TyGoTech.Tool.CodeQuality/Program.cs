@@ -1,3 +1,5 @@
 ﻿#pragma warning disable CA1812
 
-Console.WriteLine("Hello, World!");
+using TyGoTech.Tool.CodeQuality;
+
+return await CommandInvoker.InvokeAsync(args);
