@@ -8,7 +8,24 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>tygotech.codequality</ToolCommandName>
     <PackageOutputPath>./.nupkg</PackageOutputPath>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>brian@tygo.tech</Authors>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <Title>TyGoTech Code Quality Tool</Title>
+    <PackageId>TyGoTech.Tool.CodeQuality</PackageId>
+    <PackageDescription>The TyGoTech core test utilities for dotnet.</PackageDescription>
+    <PackageTags>tool;code-quality;coding-standard;tygotech</PackageTags>
+    <PackageProjectUrl>https://github.com/TyGoTech/code.quality-tool-dotnet</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/TyGoTech/code.quality-tool-dotnet</RepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs" Link="SharedAssemblyInfo.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="System.CommandLine" Version="2.0.0-beta3.22103.3" />

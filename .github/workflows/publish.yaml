@@ -50,6 +50,7 @@ jobs:
       - name: Publish
         working-directory: ${{ env.src-directory }}
         run: >
-          nuget push **\*.nupkg 
+          nuget push **\*.nupkg
+          -NoSymbols
           -Source 'https://api.nuget.org/v3/index.json' 
           -ApiKey ${{secrets.NUGET_API_KEY}}
