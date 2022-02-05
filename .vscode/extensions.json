@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "ms-dotnettools.csharp",
+        "streetsidesoftware.code-spell-checker",
+        "mikestead.dotenv",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "redhat.vscode-yaml",
+        "dotjoshjohnson.xml",
+        "visualstudioexptteam.vscodeintellicode",
+        "github.vscode-pull-request-github"
+    ]
+}

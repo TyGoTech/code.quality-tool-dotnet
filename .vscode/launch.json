@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "init",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build debug",
+            "program": "${workspaceFolder}/src/TyGoTech.Tool.CodeQuality/.bin/Debug/net6.0/TyGoTech.Tool.CodeQuality.dll",
+            "args": ["init", "--force"],
+            "cwd": "${workspaceFolder}/.test",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": "fetch",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build debug",
+            "program": "${workspaceFolder}/src/TyGoTech.Tool.CodeQuality/.bin/Debug/net6.0/TyGoTech.Tool.CodeQuality.dll",
+            "args": ["fetch"],
+            "cwd": "${workspaceFolder}/.test",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+<Project>
+    <Import Project=".\Shared.Build.props" />
+    <Import Project=".\Override.Build.props" />
+</Project>
