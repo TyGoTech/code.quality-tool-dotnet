@@ -15,7 +15,7 @@
   <PropertyGroup>
     <Title>TyGoTech Code Quality Tool</Title>
     <PackageId>TyGoTech.Tool.CodeQuality</PackageId>
-    <PackageDescription>The TyGoTech core test utilities for dotnet.</PackageDescription>
+    <PackageDescription>The TyGoTech code quality tool for dotnet.</PackageDescription>
     <PackageTags>tool;code-quality;coding-standard;tygotech</PackageTags>
     <PackageProjectUrl>https://github.com/TyGoTech/code.quality-tool-dotnet</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

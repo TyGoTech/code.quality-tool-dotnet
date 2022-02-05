@@ -1,6 +1,5 @@
 namespace TyGoTech.Tool.CodeQuality;
 
-using System.Net;
 using System.Text.Json;
 
 public class FetchCommand : CommandExt
@@ -24,7 +23,7 @@ public class FetchCommand : CommandExt
         var rc = repoFolder.Combine(Constants.SettingsFileName);
         if (!rc.Exists)
         {
-            Console.WriteLine(
+            await Console.Error.WriteLineAsync(
                 $"The settings file {rc} does not exist. " +
                 "Either try the 'init' command to initialize the repo or, " +
                 "if the repo has already been initialized, try again in the repo root.");
@@ -33,7 +32,24 @@ public class FetchCommand : CommandExt
         }
 
         using var stream = rc.OpenRead();
-        var settings = await JsonSerializer.DeserializeAsync<CodeQualitySettings>(stream);
+        var settings = JsonSerializer.Deserialize<CodeQualitySettings>(
+            stream,
+            new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            })!;
+
+        if (Path.IsPathRooted(settings.SourceFolder) || Path.IsPathFullyQualified(settings.SourceFolder))
+        {
+            await Console.Error.WriteLineAsync($"The source folder '{settings.SourceFolder}' path must be relative.");
+            return 1;
+        }
+
+        if (Path.IsPathRooted(settings.TestFolder) || Path.IsPathFullyQualified(settings.TestFolder))
+        {
+            await Console.Error.WriteLineAsync($"The test folder '{settings.TestFolder}' path must be relative.");
+            return 1;
+        }
 
         using var client = new HttpClient();
         if (!await client.TryDownloadFileAsync(
@@ -59,15 +75,18 @@ public class FetchCommand : CommandExt
             return 1;
         }
 
-        if (!await client.TryDownloadFileAsync(
-            settings!.ResourcesUri.Append(Constants.OverrideBuildPropsRemote),
-            sourceFolder.Combine(Constants.OverrideBuildPropsLocal).FullName))
+        var overrideFile = sourceFolder.Combine(Constants.OverrideBuildPropsLocal);
+        if (!overrideFile.Exists
+            && !await client.TryDownloadFileAsync(
+                settings!.ResourcesUri.Append(Constants.OverrideBuildPropsRemote),
+                sourceFolder.Combine(Constants.OverrideBuildPropsLocal).FullName))
         {
             return 1;
         }
 
         if (settings.NoTest)
         {
+            Console.WriteLine($"Test resources disabled, skipping.");
             return 0;
         }
 

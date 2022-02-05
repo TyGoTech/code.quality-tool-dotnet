@@ -9,7 +9,10 @@
             "args": ["init", "--force"],
             "cwd": "${workspaceFolder}/.test",
             "stopAtEntry": false,
-            "console": "internalConsole"
+            "console": "internalConsole",
+            "logging": {
+                "moduleLoad": false,
+            }
         },
         {
             "name": "fetch",
@@ -20,7 +23,10 @@
             "args": ["fetch"],
             "cwd": "${workspaceFolder}/.test",
             "stopAtEntry": false,
-            "console": "internalConsole"
+            "console": "internalConsole",
+            "logging": {
+                "moduleLoad": false,
+            }
         }
     ]
 }

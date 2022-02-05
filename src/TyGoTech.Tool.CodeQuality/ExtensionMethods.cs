@@ -2,20 +2,22 @@ namespace TyGoTech.Tool.CodeQuality;
 
 public static class ExtensionMethods
 {
-    public static async Task<bool> TryDownloadFileAsync(this HttpClient client, Uri uri, string fileName)
+    public static async Task<bool> TryDownloadFileAsync(this HttpClient client, Uri uri, string filePath)
     {
         try
         {
             using var stream = await client.GetStreamAsync(uri);
-            using var file = new FileStream(fileName, FileMode.Create);
+            using var file = new FileStream(filePath, FileMode.Create);
             await stream.CopyToAsync(file);
+
+            Console.WriteLine($"Saved the content of '{uri} to '{filePath}'.");
 
             return true;
         }
 #pragma warning disable CA1031
         catch (Exception ex)
         {
-            Console.WriteLine($"Failed save content of {uri} to {fileName}. Error: {ex.Message}.");
+            await Console.Error.WriteLineAsync($"Failed to save the content of '{uri} to '{filePath}'. Error: {ex.Message}.");
             return false;
         }
     }

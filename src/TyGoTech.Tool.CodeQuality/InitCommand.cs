@@ -14,16 +14,6 @@ public class InitCommand : CommandExt
         new Option(
             new[] { "--force", "-f" },
             "Overwrites the current settings file if one exists."),
-        new Option<DirectoryInfo>(
-            new[] { "--source-folder", "-s" },
-            () => new DirectoryInfo(CodeQualitySettings.Default.SourceFolder),
-            "The relative path to the source folder.")
-            .LegalFileNamesOnly(),
-        new Option<DirectoryInfo>(
-            new[] { "--test-folder", "-t" },
-            () => new DirectoryInfo(CodeQualitySettings.Default.TestFolder),
-            "The relative path to the test folder.")
-            .LegalFileNamesOnly(),
     };
 
     public InitCommand()
@@ -31,33 +21,14 @@ public class InitCommand : CommandExt
             CommandName,
             CommandDescription,
             CommandOptions,
-            CommandHandler.Create<bool, DirectoryInfo, DirectoryInfo>(Execute))
+            CommandHandler.Create<bool>(ExecuteAsync))
     {
     }
 
-    public static int Execute(
-        bool force,
-        DirectoryInfo sourceFolder,
-        DirectoryInfo testFolder)
+    public static async Task<int> ExecuteAsync(bool force)
     {
         var repoFolder = new DirectoryInfo("./");
-        var settings = new CodeQualitySettings
-        {
-            SourceFolder = sourceFolder.ToString(),
-            TestFolder = testFolder.ToString(),
-        };
-
-        if (Path.IsPathRooted(settings.SourceFolder) || Path.IsPathFullyQualified(settings.SourceFolder))
-        {
-            Console.WriteLine($"The source folder '{settings.SourceFolder}' path must be relative.");
-            return 1;
-        }
-
-        if (Path.IsPathRooted(settings.TestFolder) || Path.IsPathFullyQualified(settings.TestFolder))
-        {
-            Console.WriteLine($"The test folder '{settings.TestFolder}' path must be relative.");
-            return 1;
-        }
+        var settings = new CodeQualitySettings();
 
         var rc = Path.Combine(repoFolder.FullName, Constants.SettingsFileName);
         if (force)
@@ -67,7 +38,7 @@ public class InitCommand : CommandExt
 
         if (File.Exists(rc))
         {
-            Console.WriteLine($"The settings file {rc} already exists (use the --force Luke).");
+            await Console.Error.WriteLineAsync($"The settings file {rc} already exists (use the --force Luke).");
             return 1;
         }
 
