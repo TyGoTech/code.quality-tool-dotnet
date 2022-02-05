@@ -1,0 +1,4 @@
+<Project>
+    <Import Project=".\TyGoTech.Build.props" />
+    <Import Project=".\Override.Build.props" Condition="Exists('.\Override.Build.props')" />
+</Project>

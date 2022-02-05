@@ -1,0 +1,42 @@
+# C# files
+[*.cs]
+
+#### Naming styles ####
+
+##  Naming rules
+
+# NOTE: although there are methods that are not test methods
+#       the vast majority are, so for simplicity the convention is
+#       defined here, in the test project root folder.
+#       if it becomes possible to target test methods (i.e. by attribute)
+#       then these rules can be refined.
+
+# test methods (foo_bar)
+dotnet_naming_rule.test_methods_should_be_test_case.severity = warning
+dotnet_naming_rule.test_methods_should_be_test_case.symbols = test_methods
+dotnet_naming_rule.test_methods_should_be_test_case.style = pascal_case_with_underscores
+
+dotnet_naming_rule.async_test_methods_should_be_test_case.severity = warning
+dotnet_naming_rule.async_test_methods_should_be_test_case.symbols = async_test_methods
+dotnet_naming_rule.async_test_methods_should_be_test_case.style = pascal_case_with_underscores
+
+## Symbol specifications
+
+# test methods
+dotnet_naming_symbols.test_methods.applicable_kinds = method
+dotnet_naming_symbols.test_methods.applicable_accessibilities = public
+dotnet_naming_symbols.test_methods.required_modifiers =
+
+# async test methods
+dotnet_naming_symbols.async_test_methods.applicable_kinds = method
+dotnet_naming_symbols.async_test_methods.applicable_accessibilities = public
+dotnet_naming_symbols.async_test_methods.required_modifiers = async
+
+## Naming styles
+dotnet_naming_style.pascal_case_with_underscores.required_prefix =
+dotnet_naming_style.pascal_case_with_underscores.required_suffix =
+dotnet_naming_style.pascal_case_with_underscores.word_separator = _
+dotnet_naming_style.pascal_case_with_underscores.capitalization = pascal_case
+
+dotnet_diagnostic.CA1707.severity = none # allow underscores
+dotnet_diagnostic.xUnit2013.severity = none # allow Equal for collection size

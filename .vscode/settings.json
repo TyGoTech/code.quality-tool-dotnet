@@ -1,0 +1,28 @@
+{
+    "omnisharp.enableEditorConfigSupport": true,
+    "omnisharp.enableRoslynAnalyzers": true,
+    "omnisharp.organizeImportsOnFormat": true,
+    "omnisharp.enableAsyncCompletion": true,
+    "omnisharp.enableImportCompletion": true,
+
+    "editor.rulers": [
+        {
+            "column": 100,
+            "color": "#363636"
+        },
+        {
+            "column": 120,
+            "color": "#7e0000"
+        },
+    ],
+
+    "cSpell.ignorePaths": [
+        ".git/objects",
+        ".vscode",
+        ".vscode-insiders",
+        ".github/workflows"
+    ],
+
+    "cSpell.words": [
+    ],
+}
