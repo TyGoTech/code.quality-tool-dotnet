@@ -8,7 +8,7 @@ public class CodeQualitySettings
 
     public string TestFolder { get; init; } = "src/test/";
 
-    public Uri ResourcesUri { get; init; } = new("https://raw.githubusercontent.com/TyGoTech/code.quality-tool-dotnet/setup/resources/");
+    public Uri ResourcesUri { get; init; } = new("https://raw.githubusercontent.com/TyGoTech/code.quality-tool-dotnet/main/resources/");
 
     public bool NoTest { get; init; }
 }
