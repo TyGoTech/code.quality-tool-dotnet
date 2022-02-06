@@ -4,7 +4,7 @@ public class FetchCommand : CommandExt
 {
     public const string CommandName = "fetch";
 
-    public const string CommandDescription = "Fetch the latest code quality resources.";
+    public const string CommandDescription = "Fetch the latest resources using the runtime config settings.";
 
     public FetchCommand()
     : base(

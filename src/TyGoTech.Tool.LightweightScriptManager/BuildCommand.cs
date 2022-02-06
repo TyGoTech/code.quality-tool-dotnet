@@ -4,7 +4,7 @@ public class BuildCommand : CommandExt
 {
     public const string CommandName = "build";
 
-    public const string CommandDescription = "Build the latest code quality resources.";
+    public const string CommandDescription = "Build a runtime config for the latest resources.";
 
     public BuildCommand()
     : base(

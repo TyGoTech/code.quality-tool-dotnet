@@ -6,7 +6,7 @@ public class InitCommand : CommandExt
 {
     private const string CommandName = "init";
 
-    private const string CommandDescription = "Initialize code quality bindings for repository";
+    private const string CommandDescription = "Initialize runtime config for repository.";
 
     private static readonly IReadOnlyList<Option> CommandOptions = new Option[]
     {
@@ -19,7 +19,7 @@ public class InitCommand : CommandExt
             "The base URI that hosts the config files."),
     };
 
-    private static readonly ResourceMap RuntimeConfigMap = new("codequalityrc.json", "codequalityrc.json", false);
+    private static readonly ResourceMap RuntimeConfigMap = new(Constants.RuntimeConfigFileName);
 
     public InitCommand()
         : base(
