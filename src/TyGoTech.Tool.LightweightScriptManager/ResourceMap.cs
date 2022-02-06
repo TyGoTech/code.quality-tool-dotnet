@@ -10,7 +10,7 @@ public record ResourceMap(
     [JsonIgnore]
     public string DerivedLocalPath => this.LocalPath ?? this.RemotePath;
 
-    public Uri GetRemote(Uri resourcesUri) => resourcesUri.Append(this.RemotePath);
+    public Uri GetRemote(Uri packageUri) => packageUri.Append(this.RemotePath);
 
     public FileInfo GetLocal(DirectoryInfo repoRoot) => repoRoot.Combine(this.DerivedLocalPath);
 

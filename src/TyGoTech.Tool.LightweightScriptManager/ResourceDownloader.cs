@@ -2,7 +2,7 @@ namespace TyGoTech.Tool.LightweightScriptManager;
 
 using System.Threading.Tasks;
 
-public sealed class ResourceMapDownloader : IDisposable
+public sealed class ResourceDownloader : IDisposable
 {
     private readonly Uri _resources;
 
@@ -10,7 +10,7 @@ public sealed class ResourceMapDownloader : IDisposable
 
     private readonly HttpClient _client;
 
-    public ResourceMapDownloader(Uri resources, DirectoryInfo repo)
+    public ResourceDownloader(Uri resources, DirectoryInfo repo)
     {
         this._resources = resources;
         this._repo = repo;

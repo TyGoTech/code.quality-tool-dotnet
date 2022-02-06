@@ -8,7 +8,7 @@ public class RuntimeConfig
     [JsonPropertyName("$schema")]
     public Uri Schema => Constants.RuntimeConfigSchemaUri;
 
-    public Uri? ResourcesUri { get; set; }
+    public Uri? PackageUri { get; set; }
 
     public IList<ResourceMap> FileMaps { get; set; } = new List<ResourceMap>();
 

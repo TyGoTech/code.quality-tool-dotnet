@@ -2,12 +2,12 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "$id": "http://example.com/example.json",
     "type": "object",
-    "title": "Code quality runtime config file schema.",
-    "description": "A way to share configuration files between repos.",
+    "title": "TyGoTech Lightweight Script Manager config file schema.",
+    "description": "A way to share files between repos.",
     "default": {},
     "examples": [
         {
-            "resourcesUri": "https://raw.githubusercontent.com/TyGoTech/lightweight.script.manager-tool-dotnet/main/resources",
+            "packageUri": "https://raw.githubusercontent.com/TyGoTech/lightweight.script.manager-tool-dotnet/main/resources/dotnet",
             "fileMaps": [
                 {
                     "remotePath": ".editorconfig",
@@ -21,7 +21,7 @@
         }
     ],
     "required": [
-        "resourcesUri",
+        "packageUri",
         "fileMaps"
     ],
     "properties": {
@@ -30,14 +30,14 @@
             "type": "string",
             "title": "The URI of the JSON schema"
         },
-        "resourcesUri": {
-            "$id": "#/properties/resourcesUri",
+        "packageUri": {
+            "$id": "#/properties/packageUri",
             "type": "string",
-            "title": "Resource URI",
+            "title": "Package URI",
             "description": "The base URI that hosts the config files.",
             "default": "",
             "examples": [
-                "https://github.com/TyGoTech/lightweight.script.manager-tool-dotnet/tree/main/resources"
+                "https://github.com/TyGoTech/lightweight.script.manager-tool-dotnet/tree/main/resources/dotnet"
             ]
         },
         "fileMaps": {

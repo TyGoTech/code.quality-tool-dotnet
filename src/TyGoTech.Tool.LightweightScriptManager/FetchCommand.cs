@@ -22,7 +22,7 @@ public class FetchCommand : CommandExt
         var config = await repo.DeserializeConfigAsync();
         config.EnsureValid();
 
-        using var downloader = new ResourceMapDownloader(config.ResourcesUri!, repo);
+        using var downloader = new ResourceDownloader(config.PackageUri!, repo);
         foreach (var map in config.FileMaps)
         {
             await downloader.DownloadAsync(map);

@@ -14,7 +14,7 @@ public class InitCommand : CommandExt
             new[] { "--force", "-f" },
             "Overwrites the current runtime config file if one exists."),
         new Option<Uri>(
-            new[] { "--resources-uri", "-u" },
+            new[] { "--package-uri", "-p" },
             () => Constants.DefaultResourcesUri,
             "The base URI that hosts the config files."),
     };
@@ -30,7 +30,7 @@ public class InitCommand : CommandExt
     {
     }
 
-    public static async Task ExecuteAsync(bool force, Uri resourcesUri)
+    public static async Task ExecuteAsync(bool force, Uri packageUri)
     {
         var repo = new DirectoryInfo("./");
         var runtimeConfig = RuntimeConfigMap.GetLocal(repo);
@@ -40,11 +40,11 @@ public class InitCommand : CommandExt
                 $"The runtime config file {runtimeConfig} already exists (use the --force Luke).");
         }
 
-        using var downloader = new ResourceMapDownloader(resourcesUri, repo);
+        using var downloader = new ResourceDownloader(packageUri, repo);
         await downloader.DownloadAsync(RuntimeConfigMap);
 
         var settings = await repo.DeserializeConfigAsync();
-        settings.ResourcesUri = resourcesUri;
+        settings.PackageUri = packageUri;
         await settings.SerializeConfigAsync(repo);
     }
 }
