@@ -8,6 +8,7 @@ public static class CommandInvoker
     {
         return new()
         {
+            new BuildCommand(),
             new InitCommand(),
             new FetchCommand(),
         };

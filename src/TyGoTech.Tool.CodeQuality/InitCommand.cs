@@ -1,57 +1,50 @@
 namespace TyGoTech.Tool.CodeQuality;
 
 using System.IO;
-using System.Text.Json;
 
 public class InitCommand : CommandExt
 {
-    public const string CommandName = "init";
+    private const string CommandName = "init";
 
-    public const string CommandDescription = "Initialize code quality bindings for repository";
+    private const string CommandDescription = "Initialize code quality bindings for repository";
 
-    public static readonly IReadOnlyList<Option> CommandOptions = new Option[]
+    private static readonly IReadOnlyList<Option> CommandOptions = new Option[]
     {
         new Option(
             new[] { "--force", "-f" },
-            "Overwrites the current settings file if one exists."),
+            "Overwrites the current runtime config file if one exists."),
+        new Option<Uri>(
+            new[] { "--resources-uri", "-u" },
+            () => Constants.DefaultResourcesUri,
+            "The base URI that hosts the config files."),
     };
+
+    private static readonly ResourceMap RuntimeConfigMap = new("codequalityrc.json", "codequalityrc.json", false);
 
     public InitCommand()
         : base(
             CommandName,
             CommandDescription,
             CommandOptions,
-            CommandHandler.Create<bool>(ExecuteAsync))
+            CommandHandler.Create<bool, Uri>(ExecuteAsync))
     {
     }
 
-    public static async Task<int> ExecuteAsync(bool force)
+    public static async Task ExecuteAsync(bool force, Uri resourcesUri)
     {
-        var repoFolder = new DirectoryInfo("./");
-        var settings = new CodeQualitySettings();
-
-        var rc = Path.Combine(repoFolder.FullName, Constants.SettingsFileName);
-        if (force)
+        var repo = new DirectoryInfo("./");
+        var runtimeConfig = RuntimeConfigMap.GetLocal(repo);
+        if (runtimeConfig.Exists && !force)
         {
-            File.Delete(rc);
+            throw new InvalidOperationException(
+                $"The runtime config file {runtimeConfig} already exists (use the --force Luke).");
         }
 
-        if (File.Exists(rc))
-        {
-            await Console.Error.WriteLineAsync($"The settings file {rc} already exists (use the --force Luke).");
-            return 1;
-        }
+        using var downloader = new ResourceMapDownloader(resourcesUri, repo);
+        await downloader.DownloadAsync(RuntimeConfigMap);
 
-        using var stream = File.OpenWrite(rc);
-        JsonSerializer.Serialize(
-            stream,
-            settings,
-            new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                WriteIndented = true,
-            });
-
-        return 0;
+        var settings = await repo.DeserializeConfigAsync();
+        settings.ResourcesUri = resourcesUri;
+        await settings.SerializeConfigAsync(repo);
     }
 }

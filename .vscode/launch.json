@@ -27,6 +27,20 @@
             "logging": {
                 "moduleLoad": false,
             }
+        },
+        {
+            "name": "build",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build debug",
+            "program": "${workspaceFolder}/src/TyGoTech.Tool.CodeQuality/.bin/Debug/net6.0/TyGoTech.Tool.CodeQuality.dll",
+            "args": ["build"],
+            "cwd": "${workspaceFolder}/resources/dotnet",
+            "stopAtEntry": false,
+            "console": "internalConsole",
+            "logging": {
+                "moduleLoad": false,
+            }
         }
     ]
 }
