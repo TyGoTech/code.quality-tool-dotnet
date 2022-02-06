@@ -2,15 +2,15 @@ namespace TyGoTech.Tool.CodeQuality;
 
 using System.Text.Json.Serialization;
 
+#pragma warning disable CA1822, CA2227
 public class RuntimeConfig
 {
-#pragma warning disable CA1822
     [JsonPropertyName("$schema")]
-    public Uri Schema => new("https://raw.githubusercontent.com/TyGoTech/code.quality-tool-dotnet/main/resources/schema.json");
+    public Uri Schema => Constants.RuntimeConfigSchemaUri;
 
     public Uri? ResourcesUri { get; set; }
 
-    public IList<ResourceMap> FileMaps { get; } = new List<ResourceMap>();
+    public IList<ResourceMap> FileMaps { get; set; } = new List<ResourceMap>();
 
     public void EnsureValid()
     {

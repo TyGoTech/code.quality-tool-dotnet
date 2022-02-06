@@ -29,7 +29,8 @@ public sealed class ResourceMapDownloader : IDisposable
         var remote = map.GetRemote(this._resources);
         try
         {
-            using var stream = await this._client.GetStreamAsync(this._resources);
+            local.Directory?.Create();
+            using var stream = await this._client.GetStreamAsync(remote);
             using var file = local.Open(FileMode.Create, FileAccess.Write, FileShare.None);
             await stream.CopyToAsync(file);
 
