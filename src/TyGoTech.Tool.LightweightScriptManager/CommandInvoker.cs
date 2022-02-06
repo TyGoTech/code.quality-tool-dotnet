@@ -1,4 +1,4 @@
-namespace TyGoTech.Tool.CodeQuality;
+namespace TyGoTech.Tool.LightweightScriptManager;
 
 public static class CommandInvoker
 {

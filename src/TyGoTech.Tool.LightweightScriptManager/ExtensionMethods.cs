@@ -1,4 +1,4 @@
-namespace TyGoTech.Tool.CodeQuality;
+namespace TyGoTech.Tool.LightweightScriptManager;
 
 using System.Text.Json;
 using System.Text.Json.Serialization;

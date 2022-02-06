@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/TyGoTech/code.quality-tool-dotnet/main/resources/schema.json",
+  "$schema": "http://raw.githubusercontent.com/TyGoTech/lightweight.script.manager-tool-dotnet/main/resources/schema.json",
   "fileMaps": [
     {
       "remotePath": ".editorconfig"

@@ -7,7 +7,7 @@
     "default": {},
     "examples": [
         {
-            "resourcesUri": "https://github.com/TyGoTech/code.quality-tool-dotnet/tree/main/resources",
+            "resourcesUri": "https://raw.githubusercontent.com/TyGoTech/lightweight.script.manager-tool-dotnet/main/resources",
             "fileMaps": [
                 {
                     "remotePath": ".editorconfig",
@@ -37,7 +37,7 @@
             "description": "The base URI that hosts the config files.",
             "default": "",
             "examples": [
-                "https://github.com/TyGoTech/code.quality-tool-dotnet/tree/main/resources"
+                "https://github.com/TyGoTech/lightweight.script.manager-tool-dotnet/tree/main/resources"
             ]
         },
         "fileMaps": {
