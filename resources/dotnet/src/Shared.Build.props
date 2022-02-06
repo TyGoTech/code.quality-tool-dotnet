@@ -1,5 +1,7 @@
 <Project>
     <PropertyGroup>
+        <Company>TyGoTech</Company>
+        <Copyright>© TyGoTech 2022</Copyright>
         <BaseOutputPath>.bin/</BaseOutputPath>
         <BaseIntermediateOutputPath>.obj/</BaseIntermediateOutputPath>
     </PropertyGroup>
