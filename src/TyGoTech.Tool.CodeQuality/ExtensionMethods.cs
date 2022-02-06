@@ -1,25 +1,38 @@
 namespace TyGoTech.Tool.CodeQuality;
 
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 public static class ExtensionMethods
 {
-    public static async Task<bool> TryDownloadFileAsync(this HttpClient client, Uri uri, string filePath)
+    private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
-        try
-        {
-            using var stream = await client.GetStreamAsync(uri);
-            using var file = new FileStream(filePath, FileMode.Create);
-            await stream.CopyToAsync(file);
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
+        WriteIndented = true,
+    };
 
-            Console.WriteLine($"Saved the content of '{uri} to '{filePath}'.");
-
-            return true;
-        }
-#pragma warning disable CA1031
-        catch (Exception ex)
+    public static async Task<RuntimeConfig> DeserializeConfigAsync(this DirectoryInfo repoFolder)
+    {
+        var runtimeConfig = repoFolder.Combine(Constants.RuntimeConfigFileName);
+        if (!runtimeConfig.Exists)
         {
-            await Console.Error.WriteLineAsync($"Failed to save the content of '{uri} to '{filePath}'. Error: {ex.Message}.");
-            return false;
+            throw new FileNotFoundException(
+                $"The runtime config file {runtimeConfig} does not exist. " +
+                "Either use the 'init' command to initialize the repo or, " +
+                "if the repo has already been initialized, try again in the repo root.",
+                runtimeConfig.FullName);
         }
+
+        using var stream = runtimeConfig.OpenRead();
+        return (await JsonSerializer.DeserializeAsync<RuntimeConfig>(stream, JsonSerializerOptions))!;
+    }
+
+    public static async Task SerializeConfigAsync(this RuntimeConfig config, DirectoryInfo repoFolder)
+    {
+        var runtimeConfig = repoFolder.Combine(Constants.RuntimeConfigFileName);
+        using var stream = runtimeConfig.Open(FileMode.Create, FileAccess.Write, FileShare.None);
+        await JsonSerializer.SerializeAsync(stream, config, JsonSerializerOptions);
     }
 
     public static Uri Append(this Uri uri, params string[] paths)

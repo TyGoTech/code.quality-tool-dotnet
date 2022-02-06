@@ -1,0 +1,117 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "Code quality runtime config file schema.",
+    "description": "A way to share configuration files between repos.",
+    "default": {},
+    "examples": [
+        {
+            "resourcesUri": "https://github.com/TyGoTech/code.quality-tool-dotnet/tree/main/resources",
+            "fileMaps": [
+                {
+                    "remotePath": ".editorconfig",
+                    "localPath": "src/.editorconfig",
+                    "preserve": true
+                },
+                {
+                    "remotePath": "src/Directory.Build.props"
+                }
+            ]
+        }
+    ],
+    "required": [
+        "resourcesUri",
+        "fileMaps"
+    ],
+    "properties": {
+        "$schema": {
+            "$id": "#/properties/%24schema",
+            "type": "string",
+            "title": "The URI of the JSON schema"
+        },
+        "resourcesUri": {
+            "$id": "#/properties/resourcesUri",
+            "type": "string",
+            "title": "Resource URI",
+            "description": "The base URI that hosts the config files.",
+            "default": "",
+            "examples": [
+                "https://github.com/TyGoTech/code.quality-tool-dotnet/tree/main/resources"
+            ]
+        },
+        "fileMaps": {
+            "$id": "#/properties/fileMaps",
+            "type": "array",
+            "title": "File maps",
+            "description": "The collection of config file mappings",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "remotePath": ".editorconfig",
+                        "localPath": "src/.editorconfig",
+                        "preserve": true
+                    },
+                    {
+                        "remotePath": "src/Directory.Build.props"
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/fileMaps/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/fileMaps/items/anyOf/0",
+                        "type": "object",
+                        "title": "Resource map",
+                        "description": "A map between a remote resource and a local file",
+                        "default": {},
+                        "examples": [
+                            {
+                                "remotePath": ".editorconfig",
+                                "localPath": ".editorconfig",
+                                "preserve": false
+                            }
+                        ],
+                        "required": [
+                            "remotePath"
+                        ],
+                        "properties": {
+                            "remotePath": {
+                                "$id": "#/properties/fileMaps/items/anyOf/0/properties/remotePath",
+                                "type": "string",
+                                "title": "Remote path",
+                                "description": "The remote path of the resource, relative to the base resource URI.",
+                                "default": "",
+                                "examples": [
+                                    ".editorconfig"
+                                ]
+                            },
+                            "localPath": {
+                                "$id": "#/properties/fileMaps/items/anyOf/0/properties/localPath",
+                                "type": "string",
+                                "title": "Local path",
+                                "description": "The local path of the file relative to the repo root. When omitted defaults to the remote path.",
+                                "default": "",
+                                "examples": [
+                                    "src/.editorconfig"
+                                ]
+                            },
+                            "preserve": {
+                                "$id": "#/properties/fileMaps/items/anyOf/0/properties/preserve",
+                                "type": "boolean",
+                                "title": "Preserve current local file",
+                                "description": "A value indicating whether to preserve the current local file during fetch if.",
+                                "default": false
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": false
+}
