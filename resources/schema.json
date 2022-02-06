@@ -44,7 +44,7 @@
             "$id": "#/properties/fileMaps",
             "type": "array",
             "title": "File maps",
-            "description": "The collection of config file mappings",
+            "description": "The collection of mappings between remote resources and local files.",
             "default": [],
             "examples": [
                 [
@@ -65,8 +65,8 @@
                     {
                         "$id": "#/properties/fileMaps/items/anyOf/0",
                         "type": "object",
-                        "title": "Resource map",
-                        "description": "A map between a remote resource and a local file",
+                        "title": "File map",
+                        "description": "A map between a remote resource and a local file.",
                         "default": {},
                         "examples": [
                             {
@@ -103,7 +103,7 @@
                                 "$id": "#/properties/fileMaps/items/anyOf/0/properties/preserve",
                                 "type": "boolean",
                                 "title": "Preserve current local file",
-                                "description": "A value indicating whether to preserve the current local file during fetch if.",
+                                "description": "A value indicating whether to preserve the current local file during fetch if it already exists.",
                                 "default": false
                             }
                         },
