@@ -1,0 +1,11 @@
+<Project>
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)..\'))" />
+    
+    <PropertyGroup>
+        <TestResultsDir>TestResults</TestResultsDir>
+    </PropertyGroup>
+
+    <Target Name="RemoveTestResults" AfterTargets="Clean">
+        <RemoveDir Directories="$(TestResultsDir)" />
+    </Target>
+</Project>

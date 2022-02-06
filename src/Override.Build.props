@@ -1,7 +1,5 @@
 <Project>
     <PropertyGroup>
-        <Company>TyGoTech</Company>
-        <Product>Code Quality Tool</Product>
-        <Copyright>© TyGoTech 2022</Copyright>
+        <Product>Lightweight Script Manager</Product>
     </PropertyGroup>
 </Project>

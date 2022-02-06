@@ -1,0 +1,31 @@
+{
+  "$schema": "http://raw.githubusercontent.com/TyGoTech/lightweight.script.manager-tool-dotnet/main/resources/schema.json",
+  "packageUri": "https://raw.githubusercontent.com/TyGoTech/lightweight.script.manager-tool-dotnet/main/resources/dotnet/",
+  "fileMaps": [
+    {
+      "remotePath": ".editorconfig"
+    },
+    {
+      "remotePath": "src/Directory.Build.props"
+    },
+    {
+      "remotePath": "src/Override.Build.props",
+      "preserve": true
+    },
+    {
+      "remotePath": "src/Shared.Build.props"
+    },
+    {
+      "remotePath": "src/SharedAssemblyInfo.cs"
+    },
+    {
+      "remotePath": "src/test.runsettings"
+    },
+    {
+      "remotePath": "src/test/.editorconfig"
+    },
+    {
+      "remotePath": "src/test/Directory.Build.props"
+    }
+  ]
+}
