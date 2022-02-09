@@ -1,7 +1,7 @@
 # TyGoTech Lightweight Script Manager
 
-![GitHub](https://img.shields.io/github/license/TyGoTech/lightweight.script.manager-tool-dotnet) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TyGoTech/lightweight.script.manager-tool-dotnet/publish)
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/TyGoTech/lightweight.script.manager-tool-dotnet) ![Nuget](https://img.shields.io/nuget/v/TyGoTech.Tool.LightweightScriptManager)
+![GitHub](https://img.shields.io/github/license/TyGoTech/tool-lightweight.script.manager) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/TyGoTech/tool-lightweight.script.manager/publish)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/TyGoTech/tool-lightweight.script.manager) ![Nuget](https://img.shields.io/nuget/v/TyGoTech.Tool.LightweightScriptManager)
 
 *A tool for sharing files between repositories.*
 
@@ -37,7 +37,7 @@ dotnet tool install --global TyGoTech.Tool.LightweightScriptManager
     ```
 
 - Open the repo in your favorite non-super-bloatware IDE (think VS Code not Visual Studio).
-- Add the files that you want to share between your repos using the directory structure that you want to deploy them into. See [`resources/dotnet`](https://github.com/TyGoTech/lightweight.script.manager-tool-dotnet/tree/main/resources/dotnet) for an example.
+- Add the files that you want to share between your repos using the directory structure that you want to deploy them into. See [`resources/dotnet`](https://github.com/TyGoTech/tool-lightweight.script.manager/tree/main/resources/dotnet) for an example.
 - Open a terminal in the root of your local repo.
 - Build a runtime config file.
 
@@ -45,7 +45,7 @@ dotnet tool install --global TyGoTech.Tool.LightweightScriptManager
     tygotech.lsm build
     ```
 
-    This will generate a file called `lsmrc.json` in the current directory. See [`lsmrc.json`](https://github.com/TyGoTech/lightweight.script.manager-tool-dotnet/blob/main/resources/dotnet/lsmrc.json) for an example.
+    This will generate a file called `lsmrc.json` in the current directory. See [`lsmrc.json`](https://github.com/TyGoTech/tool-lightweight.script.manager/blob/main/resources/dotnet/lsmrc.json) for an example.
 - Commit and push.
 
     ```[bash]

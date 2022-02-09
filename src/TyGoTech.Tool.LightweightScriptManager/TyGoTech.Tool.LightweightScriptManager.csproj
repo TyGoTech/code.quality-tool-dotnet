@@ -17,10 +17,10 @@
     <PackageId>TyGoTech.Tool.LightweightScriptManager</PackageId>
     <PackageDescription>The TyGoTech lightweight script manager.</PackageDescription>
     <PackageTags>tool;script-manager;lightweight;tygotech</PackageTags>
-    <PackageProjectUrl>https://github.com/TyGoTech/lightweight.script.manager-tool-dotnet</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/TyGoTech/tool-lightweight.script.manager</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/TyGoTech/lightweight.script.manager-tool-dotnet</RepositoryUrl>
+    <RepositoryUrl>https://github.com/TyGoTech/tool-lightweight.script.manager</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

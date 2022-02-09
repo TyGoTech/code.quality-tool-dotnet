@@ -7,7 +7,7 @@
     "default": {},
     "examples": [
         {
-            "packageUri": "https://raw.githubusercontent.com/TyGoTech/lightweight.script.manager-tool-dotnet/main/resources/dotnet",
+            "packageUri": "https://raw.githubusercontent.com/TyGoTech/tool-lightweight.script.manager/main/resources/dotnet",
             "fileMaps": [
                 {
                     "remotePath": ".editorconfig",
@@ -37,7 +37,7 @@
             "description": "The base URI that hosts the config files.",
             "default": "",
             "examples": [
-                "https://github.com/TyGoTech/lightweight.script.manager-tool-dotnet/tree/main/resources/dotnet"
+                "https://github.com/TyGoTech/tool-lightweight.script.manager/tree/main/resources/dotnet"
             ]
         },
         "fileMaps": {

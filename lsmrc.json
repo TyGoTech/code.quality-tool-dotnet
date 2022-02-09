@@ -1,6 +1,6 @@
 {
-  "$schema": "http://raw.githubusercontent.com/TyGoTech/lightweight.script.manager-tool-dotnet/main/resources/schema.json",
-  "packageUri": "https://raw.githubusercontent.com/TyGoTech/lightweight.script.manager-tool-dotnet/main/resources/dotnet/",
+  "$schema": "http://raw.githubusercontent.com/TyGoTech/tool-lightweight.script.manager/main/resources/schema.json",
+  "packageUri": "https://raw.githubusercontent.com/TyGoTech/tool-lightweight.script.manager/main/resources/dotnet/",
   "fileMaps": [
     {
       "remotePath": ".editorconfig"
